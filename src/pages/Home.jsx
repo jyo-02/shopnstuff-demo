@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import productService from "../connectServer/config"; // Import your product service
+import productService from "../connectServer/config"; 
 import { Container, ProductCard } from "../components";
-import Carousel from "../components/Carousal"; // Ensure correct import
+import Carousel from "../components/Carousal";
 import { toast } from "react-toastify";
 
 function Home() {
@@ -12,53 +12,12 @@ function Home() {
   const [selectedCategory, setSelectedCategory] = useState("All categories");
   const authStatus = useSelector((state) => state.auth.status);
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      setIsLoading(true);
-      try {
-        const response = await productService.getAllProducts();
-        if (response && response.data) {
-          setProducts(response.data);
-        }
-      } catch (error) {
-        console.error("Error fetching products:", error);
-        toast.error(error?.data?.message || error?.error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
+ 
 
-    fetchProducts();
-  }, []);
-
-  const handleCategoryClick = (category) => {
-    setSelectedCategory(category);
-  };
-
-  // Filter products based on selected category
-  const filteredProducts = selectedCategory === "All categories"
-    ? products
-    : products.filter(product =>
-        product.name.toLowerCase().includes(selectedCategory.toLowerCase())
-      );
-
-  const images = [
-    "https://flowbite.s3.amazonaws.com/docs/gallery/square/image.jpg",
-    "https://flowbite.s3.amazonaws.com/docs/gallery/square/image-1.jpg",
-    "https://flowbite.s3.amazonaws.com/docs/gallery/square/image-2.jpg",
-    "https://flowbite.s3.amazonaws.com/docs/gallery/square/image-3.jpg",
-    "https://flowbite.s3.amazonaws.com/docs/gallery/square/image-4.jpg",
-    "https://flowbite.s3.amazonaws.com/docs/gallery/square/image-5.jpg",
-    "https://flowbite.s3.amazonaws.com/docs/gallery/square/image-6.jpg",
-    "https://flowbite.s3.amazonaws.com/docs/gallery/square/image-7.jpg",
-    "https://flowbite.s3.amazonaws.com/docs/gallery/square/image-8.jpg",
-    "https://flowbite.s3.amazonaws.com/docs/gallery/square/image-9.jpg",
-    "https://flowbite.s3.amazonaws.com/docs/gallery/square/image-10.jpg",
-    "https://flowbite.s3.amazonaws.com/docs/gallery/square/image-11.jpg",
-  ];
+  //full code not shown
+  
 
 
-  // Content for logged out users
   if (!authStatus) {
     return (
       <div className="w-full py-8 mt-4 text-center mb-9">
@@ -86,7 +45,6 @@ function Home() {
             </div>
           </div>
 
-          {/* Placeholder for image grid */}
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4 pt-9">
             {images.map((src, index) => (
               <div key={index}>
@@ -103,7 +61,6 @@ function Home() {
     );
   }
 
-  const slides = ["./img1.jpg", "./img2.jpg", "./img3.jpg", "./img4.jpg"];
 
   return (
     <>
@@ -131,7 +88,7 @@ function Home() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 py-8">
             {isLoading ? (
-              <div>Loading...</div> // Add a loading state here
+              <div>Loading...</div> 
             ) : (
               filteredProducts.map((product) => (
                 <div key={product._id} className="p-2">
