@@ -12,6 +12,13 @@ A modern e-commerce web application built with React, Redux, and React Router. T
 - **Checkout Process**: Complete payment and view success message.
 - **About Page**: Learn more about the application.
 
+## 🖥️ Demo Preview
+
+![App Screenshot](./shopnstuffpic.png)
+
+
+---
+
 ## Installation
 
 1. **Clone the repository**:
